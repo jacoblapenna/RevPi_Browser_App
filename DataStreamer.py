@@ -15,16 +15,13 @@ class DataStreamer:
     def _produce(self):
         class DAQ:
             def __init__(self, socketio):
-                self._produce_stream = False
                 self._socketio = socketio
                 # self._revpi = revpimodio2.RevPiModIO(autorefresh=True, debug=True)
 
             def _cycle_program(self, ct):
-                if self._produce_stream:
-                    new_data = randint(-500, 500)/100
-                    # new_data = self._revpi.io.InputValue_1.value/1000
-                    # self._socketio.emit("new_data", {"data" : new_data})
-                    print(new_data)
+                new_data = randint(-500, 500)/100
+                # new_data = self._revpi.io.InputValue_1.value/1000
+                self._socketio.emit("new_data", {"data" : new_data})
 
             def produce(self):
                 # self._revpi.cycleloop(self._cycle_program, cycletime=25)
@@ -32,6 +29,5 @@ class DataStreamer:
                     self._cycle_program(1)
                     sleep(0.025)
 
-        print("Entered producer process target function...")
         daq = DAQ(self._producer_socketio)
         daq.produce()
