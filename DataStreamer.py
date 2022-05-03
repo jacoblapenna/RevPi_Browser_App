@@ -32,5 +32,6 @@ class DataStreamer:
                     self._cycle_program(1)
                     sleep(0.025)
 
+        print("Entered producer process target function...")
         daq = DAQ(self._producer_socketio)
         daq.produce()
