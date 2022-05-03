@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Socket Test</title>
+  <script src="{{ url_for('static', filename='js/socket.io.min.js') }}"></script>
+  <style>
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="centered">
+      <h1 id="stream_data">--</h1>
+  </div>
+
+  <script>
+    const socket =  io.connect(location.origin);
+    const stream_data = document.getElementById("stream_data");
+
+    socket.on("new_data", function(data) {
+      stream_data.innerHTML = data.data;
+    });
+  </script>
+
+</body>
+</html>
