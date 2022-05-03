@@ -24,6 +24,7 @@ class DataStreamer:
                     new_data = randint(-500, 500)/100
                     # new_data = self._revpi.io.InputValue_1.value/1000
                     self._socketio.emit("new_data", {"data" : new_data})
+                    print(new_data)
 
             def produce(self):
                 # self._revpi.cycleloop(self._cycle_program, cycletime=25)
