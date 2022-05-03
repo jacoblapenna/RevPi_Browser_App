@@ -16,7 +16,9 @@ class DataStreamer:
         class DAQ:
             def __init__(self, socketio):
                 self._socketio = socketio
-                self._revpi = revpimodio2.RevPiModIO(autorefresh=True, debug=True)
+                print("reaches here...")
+                # self._revpi = revpimodio2.RevPiModIO(autorefresh=True, debug=True)
+                print("never reaches here when above line is not commented out...")
 
             def _cycle_program(self, ct):
                 new_data = randint(-500, 500)/100
