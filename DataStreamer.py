@@ -28,7 +28,7 @@ class DataStreamer:
             def produce(self):
                 # self._revpi.cycleloop(self._cycle_program, cycletime=25)
                 while True:
-                    self._cycle_handler(1)
+                    self._cycle_program(1)
                     sleep(0.025)
 
         daq = DAQ(self._producer_socketio)
