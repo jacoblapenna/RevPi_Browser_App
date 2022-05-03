@@ -20,3 +20,5 @@ Basic browser app to show data from first channel of AIO connected to a Revoluti
 3. In a browser, navigate to the Revolution Pi's IP (stated in the terminal from step 2) via port 8080.
 
 ## Issues with revpimodio2
+DataStreamer.py process targeted to the `_produce` method hangs on `RevPiModIO` instantiation.
+See print statements on lines 19 and 21 of DataStreamer.py and comment/uncomment line 20 to confirm.

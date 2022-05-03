@@ -17,7 +17,7 @@ class DataStreamer:
             def __init__(self, socketio):
                 self._socketio = socketio
                 print("reaches here...")
-                self._revpi = revpimodio2.RevPiModIO(autorefresh=True, debug=True)
+                self._revpi = revpimodio2.RevPiModIO(autorefresh=True, debug=True) # this line hangs
                 print("never reaches here when above line is not commented out...")
 
             def _cycle_program(self, ct):
