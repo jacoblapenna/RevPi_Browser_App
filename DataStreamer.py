@@ -16,21 +16,14 @@ class DataStreamer:
         class DAQ:
             def __init__(self, socketio):
                 self._socketio = socketio
-                print("reaches here...")
-                self._revpi = revpimodio2.RevPiModIO(debug=True) # this line hangs with autorefresh=True
-                print("never reaches here when above line is not commented out...")
+                self._revpi = revpimodio2.RevPiModIO(autorefresh=True, debug=True)
 
             def _cycle_program(self, ct):
-                self._revpi.readprocimg()  # Read all input values from process image
-                # new_data = randint(-500, 500)/100
-                new_data = self._revpi.io.InputValue_1.value / 1000
+                new_data = self._revpi.io.InputValue_1.value/1000
                 self._socketio.emit("new_data", {"data" : new_data})
 
             def produce(self):
-                # self._revpi.cycleloop(self._cycle_program, cycletime=25)
-                while True:
-                    self._cycle_program(1)
-                    sleep(0.025)
+                self._revpi.cycleloop(self._cycle_program, cycletime=25)
 
         daq = DAQ(self._producer_socketio)
         daq.produce()
