@@ -1,3 +1,6 @@
+import eventlet
+eventlet.monkey_patch()
+
 import redis
 
 from Server import Server
@@ -5,9 +8,6 @@ from DataStreamer import DataStreamer
 
 from flask import Flask, render_template
 from flask_socketio import SocketIO
-
-import eventlet
-eventlet.monkey_patch()
 
 app = Flask(__name__)
 socketio = SocketIO(app, message_queue='redis://')
